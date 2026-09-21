@@ -1,12 +1,17 @@
-# Render Blueprint. Connecting this repo on Render picks this up and
-# configures the static site automatically — no build step, no dependencies,
-# the whole site is one HTML file served from the repo root.
+# Render Blueprint.
+#
+# staticPublishPath is `build` rather than `.` on purpose: Render's Static
+# Site form defaults the publish directory to `build`, so a repo whose site
+# sits at the root fails with "Publish directory build does not exist!" unless
+# someone remembers to change that field. Producing a real `build/` means the
+# default path works whether this is created as a Blueprint or as a plain
+# Static Site.
 services:
   - type: web
     name: uk-adjusted-net-income
     runtime: static
-    buildCommand: ""
-    staticPublishPath: .
+    buildCommand: mkdir -p build && cp index.html build/
+    staticPublishPath: build
     pullRequestPreviewsEnabled: false
     headers:
       - path: /*
