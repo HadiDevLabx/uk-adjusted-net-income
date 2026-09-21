@@ -1,0 +1,17 @@
+# Render Blueprint. Connecting this repo on Render picks this up and
+# configures the static site automatically — no build step, no dependencies,
+# the whole site is one HTML file served from the repo root.
+services:
+  - type: web
+    name: uk-adjusted-net-income
+    runtime: static
+    buildCommand: ""
+    staticPublishPath: .
+    pullRequestPreviewsEnabled: false
+    headers:
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
+      - path: /*
+        name: Referrer-Policy
+        value: strict-origin-when-cross-origin
