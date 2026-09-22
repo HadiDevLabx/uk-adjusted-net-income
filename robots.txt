@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://uk-adjusted-net-income.onrender.com/sitemap.xml
