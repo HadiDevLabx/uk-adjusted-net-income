@@ -1,5 +1,10 @@
 # Render Blueprint.
 #
+# build/robots.txt and build/sitemap.xml are COMMITTED, because this service
+# was created as a Static Site rather than a Blueprint and so ignores the
+# buildCommand below — its UI command only copies index.html. Committing the
+# two static files into build/ makes them survive whichever command runs.
+#
 # staticPublishPath is `build` rather than `.` on purpose: Render's Static
 # Site form defaults the publish directory to `build`, so a repo whose site
 # sits at the root fails with "Publish directory build does not exist!" unless
@@ -10,7 +15,7 @@ services:
   - type: web
     name: uk-adjusted-net-income
     runtime: static
-    buildCommand: mkdir -p build && cp index.html build/
+    buildCommand: mkdir -p build && cp index.html robots.txt sitemap.xml build/
     staticPublishPath: build
     pullRequestPreviewsEnabled: false
     headers:
